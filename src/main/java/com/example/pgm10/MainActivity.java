@@ -1,7 +1,9 @@
 package com.example.pgm10;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -36,8 +38,23 @@ public class MainActivity extends AppCompatActivity {
         }
         int age = Integer.parseInt(e2.getText().toString());
         if(age>=18){
-            Toast.makeText(getApplicationContext(),title+"."+e1.getText()+"of age"+String.valueOf(age)+"is eligible for voting",Toast.LENGTH_LONG).show();
-//            Toast.makeText(getApplicationContext(),"hello"+String.valueOf(age)+rb.getText(),Toast.LENGTH_LONG).show();
+            String message = title+"."+e1.getText()+" of age "+String.valueOf(age)+" is eligible for voting";
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+
+            builder.setTitle("Voting Eligibility")
+                    .setMessage(message)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss(); 
+                        }
+                    })
+                    .show();
+
+//          Toast.makeText(getApplicationContext(),"hello"+String.valueOf(age)+rb.getText(),Toast.LENGTH_LONG).show();
 
 
         }
